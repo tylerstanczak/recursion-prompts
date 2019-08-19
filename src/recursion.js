@@ -70,7 +70,7 @@ var exponent = function(base, exp) {
   if (exp === 1 || exp === -1) {
     return (negativity) ? 1 / base : base;
   }
-  return (negativity) ? 1 / base * exponent(base, exp+1) : base * exponent(base, exp-1)
+  return (negativity) ? Number(((1 / base) * exponent(base, exp+1)).toFixed(5)) : base * exponent(base, exp-1)
 };
 
 // 8. Determine if a number is a power of two.
@@ -78,6 +78,10 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  n = Math.abs(n);
+  if (n === 1) return true;
+  if (n < 1) return false;
+  if (n > 1) return powerOfTwo(n/2);
 };
 
 // 9. Write a function that reverses a string.

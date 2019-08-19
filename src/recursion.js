@@ -56,11 +56,7 @@ var sumBelow = function(n) {
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
   if (x + 1 === y || x - 1 === y || x === y) return [];
-  var min = (x < y) ? x : y;
-  return (min === x) ? [x+1].concat(range(x+1, y)) : [x-1].concat(range(x-1, y));
-  
-
-
+  return (x < y) ? [x+1].concat(range(x+1, y)) : [x-1].concat(range(x-1, y));
 };
 
 // 7. Compute the exponent of a number.
@@ -69,6 +65,12 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  if (exp === 0) return 1;
+  var negativity = (exp < 0);
+  if (exp === 1 || exp === -1) {
+    return (negativity) ? 1 / base : base;
+  }
+  return (negativity) ? 1 / base * exponent(base, exp+1) : base * exponent(base, exp-1)
 };
 
 // 8. Determine if a number is a power of two.
@@ -80,6 +82,7 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+  return (string.length === 0) ? '' : string[string.length-1] + reverse(string.slice(0, string.length-1)); 
 };
 
 // 10. Write a function that determines if a string is a palindrome.

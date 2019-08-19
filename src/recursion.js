@@ -110,15 +110,18 @@ var modulo = function(x, y) {
 var multiply = function(x, y) {
   if (y === 0) return 0;
   return (y < 0) ? -x + (multiply(x, y+1)) : x + (multiply(x, y-1));
-
-
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function(x, y) {
+  if (x === 0) return 0;
+  if (y === 0) return NaN;
+  if (x < 0) return !x;
+  if (y < 0) return !y;
+  if (x === y) return 1;
+  return (x > y) ? 1 + (divide(x-y, y)) : 0;
 };
-
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
 // gcd(4,36); // 4
